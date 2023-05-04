@@ -3,16 +3,9 @@
 let allTasks = [];
 const form = document.getElementById("formContainer__form");
 const list = document.getElementById("listContainer__list");
+// Date du jour par défaut dans l'input 
+document.getElementById("formContainer__form--date").valueAsDate = new Date();
 let id = getMaxId();
-
-function test(task){
-    // let label = document.getElementById("formContainer__form--task");
-    task.preventDefault();
-    console.log(task.target.label.value);
-    console.log(task.target.description.value);
-    console.log(task.target.date.value);
-    // console.log(label.value);
-}
 
 
 // Fonctions
@@ -53,37 +46,14 @@ function createListItem(task){
 
     // Ajout d'évènements aux radio box
     todoRb.addEventListener("change", function(){
-        if(!todoRb){
-            task.state = "todo";
-            todoRb.checked = true;
-        }
+        task.state = "todo";
     });
-    // todoRb.addEventListener("click", function() {
-    //     listItem.classList.toggle("todo");
-    //     task.state = !task.state;
-    // });
-
     doingRb.addEventListener("change", function(){
-        if(!doingRb){
-            task.state = "doing";
-            doingRb.checked = true;
-        }
+        task.state = "doing";
     });
-    // doingRb.addEventListener("click", function() {
-    //     listItem.classList.toggle("doing");
-    //     task.state = !task.state;
-    // });
-
     doneRb.addEventListener("change", function(){
-        if(!doneRb){
-            task.state = "done";
-            doneRb.checked = true;
-        }
+        task.state = "done";
     });
-    // doneRb.addEventListener("click", function() {
-    //     listItem.classList.toggle("done");
-    //     task.state = !task.state;
-    // });
 
     // Création du bouton delete
     let button = document.createElement("button");
@@ -120,7 +90,7 @@ function addTask(task){
     let inputLab = document.getElementById("formContainer__form--task").value;
     let inputDesc = document.getElementById("formContainer__form--description").value;
     if(inputLab.trim() === "" || inputDesc.trim() === ""){
-        alert("Veuillez saisir une tâche");
+        alert("Veuillez saisir une tâche complète");
         return;
     }
 
