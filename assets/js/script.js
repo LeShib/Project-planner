@@ -76,11 +76,32 @@ function createListItem(task){
     // Ajouter les éléments à la div 
     listItem.appendChild(taskLabel);
     listItem.appendChild(taskDescription);
+    listItem.appendChild(taskDays);
     listItem.appendChild(rbDiv);
     listItem.appendChild(button);
 
     return listItem;
 }
+
+function remainingDays(date){
+    let remainingDays;
+    let dueDate = date.split('-');
+    let todayDate = new Date();
+    if(todayDate.getFullYear() === parseInt(dueDate[0])){
+        if(todayDate.getMonth() === parseInt(dueDate[1])-1){
+            remainingDays = parseInt(dueDate[2]) - todayDate.getDate();
+        }else{
+            // if(){}
+        }
+    }else{
+        
+    }
+    return remainingDays;
+}
+
+// 31 -> 0, 2, 4, 6, 7, 9, 11
+// 30 -> 3, 5, 8, 10
+// fev -> 1
 
 function addTask(task){
     // Empêcher le comportement par défaut du formulaire (recharger la page)
@@ -96,11 +117,30 @@ function addTask(task){
 
     // Création de l'objet task
     let newTask = new Object();
+    newTask.id = id; 
     newTask.label = task.target.label.value;
     newTask.description = task.target.description.value;
-    newTask.date = task.target.date.value;
     newTask.state = "todo";
-    newTask.id = id; 
+    newTask.date = task.target.date.value;
+    todayDate = new Date();
+    console.log(newTask.date);
+    // console.log(newTask.date.getFullYear());
+    // console.log(newTask.date.getMonth());
+    // console.log(newTask.date.getDay());
+    console.log(todayDate.getFullYear());
+    console.log(todayDate.getMonth()-1);
+    console.log(todayDate.getDay());
+
+    // const str = 'The quick brown fox jumps over the lazy dog.';
+    // const words = str.split(' ');
+    // console.log(words[3]);
+    // // Expected output: "fox"
+
+    let dueDate = newTask.date.split('-');
+    console.log('newtask.date',typeof newTask.date)
+    console.log(typeof dueDate[0]); // year
+    console.log(dueDate[1]-1); // Month
+    console.log(dueDate[2]); // Day
 
     // Ajouter la nouvelle tache au tableau
     allTasks.push(newTask);
@@ -112,6 +152,7 @@ function addTask(task){
     // Effacer le champ de saisie de texte
     document.getElementById("formContainer__form--task").value = "";
     document.getElementById("formContainer__form--description").value = "";
+    document.getElementById("formContainer__form--date").valueAsDate = new Date();
     displayAllTasks();
 }
 
@@ -123,6 +164,9 @@ function displayAllTasks(){
         list.appendChild(listItem);
     });
 }
+
+// Récupérer tous les éléments qui ont "todo" comme state
+// 
 
 // Appels de fonction
 displayAllTasks();
