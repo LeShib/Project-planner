@@ -10,13 +10,27 @@
 </head>
 <body>
     <header>
-
+        <h1>Plannificateur de projet</h1>
+        <nav id="filter" class="filterNav">
+            <button id="filter__todo" class="todoBtn"></button>
+            <button id="filter__doing" class="doingBtn"></button>
+            <button id="filter__done" class="doneBtn"></button>
+            <button id="filter__days" class="daysBtn"></button>
+        </nav>
     </header>
     <main>
-
+        <div id="formContainer" class="formContainer">
+            <form id="formContainer__form">
+                <input id="formContainer__form--task" type="text" placeholder="Saisir une nouvelle tâche"></input>
+                <input id="formContainer__form--description" type="text"></input>
+                <button id="formContainer__form--submitBtn">Envoyer</button>
+            </form>
+        </div>
+        <div id="listContainer" class="listContainer">
+            <ul id="listContainer__list" class="list"></ul>
+        </div>
     </main>
     <footer>
-
     </footer>
 </body>
 </html>
