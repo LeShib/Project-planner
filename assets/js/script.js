@@ -1,48 +1,93 @@
 // Variables
 // let allTasks = JSON.parse(localStorage.getItem("LIST")) || []; 
-let allTasks = [];
+let allTasks = [
+    {
+        id: 1,
+        label: "travailler",
+        description: "réaliser techtalk",
+        dueDate: new Date('1997-6-2'),
+        state:"todo",
+    },
+    {
+        id: 2,
+        label: "travailler2",
+        description: "réaliser techtalk2",
+        dueDate: new Date('1978-4-4'),
+        state: "todo",
+    },
+    {
+        id: 3,
+        label: "travailler3",
+        description: "réaliser techtalk3",
+        dueDate: new Date('2007-6-22'),
+        state: "doing",
+    },
+    {
+        id: 4,
+        label: "travailler4",
+        description: "réaliser techtalk4",
+        dueDate: new Date('2002-6-22'),
+        state: "done",
+    }
+];
 const form = document.getElementById("formContainer__form");
 const list = document.getElementById("listContainer__list");
+const todobtn = document.getElementById("filter__todo");
 // Date du jour par défaut dans l'input 
 document.getElementById("formContainer__form--date").valueAsDate = new Date();
 let id = getMaxId();
 
 
 // Fonctions
+// Récupérer l'id le plus élevé du tableau
 function getMaxId(){
     let newId = 0;
-    allTasks.forEach(task => {
-        if(task.id > newId){
-            newId = task.id;
-        }
-    });
-    return (newId+1);
+    if(allTasks.length > 0){
+        allTasks.forEach(task => {
+            if(task.id > newId){
+                newId = task.id;
+            }
+        });
+        return newId+1;
+    }
+    return newId;
 }
 
+// Crée un élément liste au niveau html
 function createListItem(task){
     // Création élément liste (div) 
     let listItem = document.createElement("div");
     let taskLabel = document.createElement("span");
     taskLabel.textContent = task.label;
-
     let taskDescription = document.createElement("p");
     taskDescription.textContent = task.description;
-
     let taskDays = document.createElement("p");
-    taskDays.textContent = task.date;
+    taskDays.textContent = task.dueDate;
 
     // Création des radio box
     let rbDiv = document.createElement("div");
     let todoRb = document.createElement("input");
     todoRb.type = "radio";
-    todoRb.name = "radioState";
-    todoRb.checked = true;
+    todoRb.name = "radioState " + task.id;
     let doingRb = document.createElement("input");
     doingRb.type = "radio";
-    doingRb.name = "radioState";
+    doingRb.name = "radioState " + task.id;
     let doneRb = document.createElement("input");
     doneRb.type = "radio";
-    doneRb.name = "radioState";
+    doneRb.name = "radioState " + task.id;
+
+    // Valeur par défaut de la radio box
+    if(task.state != null){
+        if(task.state == "todo"){
+            todoRb.checked = true;
+        }else if(task.state == "doing"){
+            doingRb.checked = true;
+        }else{
+            doneRb.checked = true;
+        }
+    }else{
+        todoRb.checked = true;
+    }
 
     // Ajout d'évènements aux radio box
     todoRb.addEventListener("change", function(){
@@ -165,11 +210,35 @@ function displayAllTasks(){
     });
 }
 
-// Récupérer tous les éléments qui ont "todo" comme state
-// 
+// Parcours le tableau
+// récupère tous les éléments qui ont "todo" comme state
+// affiche tous ces éléments
+function todoFilter() {
+    list.innerHTML = "";
+    allTasks.forEach(task => {
+        let divTodo = document.createElement("div");
+        if (task.state == "todo") {
+            divTodo.innerHTML = 
+            `
+            <p>${task.label}</p>
+            <p>${task.description}</p>
+            <p>${task.dueDate}</p>
+            <div>
+               <input type="radio" name = "radiostate ${task.id}" checked>
+               <input type="radio"name = "radiostate ${task.id}">
+               <input type="radio" name ="radiostate ${task.id}">
+            </div>
+            <button> supprimer </button>
+            `;
+        }
+        list.appendChild (divTodo);
+    });
+}
 
 // Appels de fonction
 displayAllTasks();
 
+
 // Evenements
 form.addEventListener("submit", addTask);
+todobtn.addEventListener("click", todoFilter);
