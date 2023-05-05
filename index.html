@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <script defer src="assets/js/script.js"></script>
     <title>Project Planner</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;1,500&display=swap');
+    </style> 
 </head>
 <body>
     <header>
-        <h1>Plannificateur de projet</h1>
+        <h1> <img class="" src ="./assets/Img/puzzle.svg"> Planificateur de projet</h1>
         <nav id="filter" class="filterNav">
             <button id="filter__todo" class="todoBtn">à faire</button>
             <button id="filter__doing" class="doingBtn">en cours</button>
@@ -22,11 +25,11 @@
         <div id="formContainer" class="formContainer">
             <form id="formContainer__form">
                 <label id="formContainer__form--taskLab" for="label">Titre de la tâche</label>
-                <input id="formContainer__form--task" type="text" name="label" value="test">
+                <input id="formContainer__form--task" type="text" name="label" value="test"><br>
                 <label id="formContainer__form--descriptionLab" for="description" >Description de la tâche</label>
-                <input id="formContainer__form--description" type="text" value="test desc" name="description">
+                <input id="formContainer__form--description" type="text" value="test desc" name="description"><br>
                 <label id="formContainer__form--dateLab" for="date">Date butoire</label>
-                <input id="formContainer__form--date" type="date" name="date">
+                <input id="formContainer__form--date" type="date" name="date"><br>
                 <button id="formContainer__form--submitBtn" type="submit">Envoyer</button>
             </form>
         </div>
@@ -34,7 +37,5 @@
             <div id="listContainer__list" class="list"></div>
         </div>
     </main>
-    <footer>
-    </footer>
 </body>
 </html>
