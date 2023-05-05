@@ -26,7 +26,7 @@ let allTasks = [
         id: 4,
         label: "travailler4",
         description: "réaliser techtalk4",
-        dueDate: new Date('2023-8-7'),
+        dueDate: new Date('2025-2-2'),
         state: "done",
     },
     {
@@ -109,15 +109,12 @@ function createListItem(task){
 	// Ajout d'évènements aux radio box
 	todoRb.addEventListener("change", function () {
 		task.state = "todo";
-        console.log(task.state);
 	});
 	doingRb.addEventListener("change", function () {
 		task.state = "doing";
-        console.log(task.state);
 	});
 	doneRb.addEventListener("change", function () {
 		task.state = "done";
-        console.log(task.state);
 	});
 
 	// Création du bouton delete
@@ -177,10 +174,39 @@ function remainingDays(date){
         }
     }else if(todayDate.getFullYear() < date.getFullYear()){
         let yearsGap = date.getFullYear() - todayDate.getFullYear();
+        remainingDays = 365*yearsGap;
+        if(todayDate.getMonth() === date.getMonth()){
+            remainingDays += date.getDate() - todayDate.getDate();
+        }else{
+            let monthsGap = date.getMonth() - todayDate.getMonth();
+            if(monthsGap < 0){
+                monthsGap = todayDate.getMonth() - date.getMonth(); // 3
+                for(let i = 1; i <= monthsGap; i++){
+                    remainingDays += months[todayDate.getMonth() - i];
+                }
+                if(date.getDate() < todayDate.getDate()){
+                    remainingDays -= (todayDate.getDate() - date.getDate());
+                }else{
+                    remainingDays += (date.getDate() - todayDate.getDate());
+                }
+            }else{
+                for(let i = 0; i < monthsGap; i++){
+                    remainingDays += months[todayDate.getMonth() + i];
+                }
+                if(date.getDate() < todayDate.getDate()){
+                    remainingDays -= (todayDate.getDate() - date.getDate());
+                }else{
+                    remainingDays += (date.getDate() - todayDate.getDate());
+                }
+            }
+        }
+    }else{
+        return -1;
     }
     return remainingDays;
 }
 
+// 02/02/2025 - 05/05/2023   -> 365+365 - (avril(30)+mars(31)+février(28)) - (5-2) =  638
 // 02/06   -   05/05 = MAI(31) - (5-2) = 28
 // 07/08    -   05/05 = (MAI(31)+JUIN(30)+JUILLET(31) + (7-5)) = 94
 
@@ -194,6 +220,8 @@ nbJours = remainingDays(allTasks[3].dueDate)
 console.log(nbJours); // 94
 console.log(remainingDays(allTasks[0].dueDate)); // 28
 console.log(remainingDays(allTasks[4].dueDate)); // 17
+console.log(remainingDays(allTasks[2].dueDate)) // -1 
+console.log(remainingDays(allTasks[3].dueDate)) // 638
 
 // 31 -> 0, 2, 4, 6, 7, 9, 11
 // 30 -> 3, 5, 8, 10
