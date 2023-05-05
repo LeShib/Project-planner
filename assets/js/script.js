@@ -71,12 +71,18 @@ function createListItem(task){
     let todoRb = document.createElement("input");
     todoRb.type = "radio";
     todoRb.name = "radioState " + task.id;
+    let todoLab = document.createElement("label");
+    todoLab.appendChild(document.createTextNode("à faire"));
     let doingRb = document.createElement("input");
     doingRb.type = "radio";
     doingRb.name = "radioState " + task.id;
+    let doingLab = document.createElement("label");
+    doingLab.appendChild(document.createTextNode("En cours"));
     let doneRb = document.createElement("input");
     doneRb.type = "radio";
     doneRb.name = "radioState " + task.id;
+    let doneLab = document.createElement("label");
+    doneLab.appendChild(document.createTextNode("terminée"));
 
     // Valeur par défaut de la radio box
     if(task.state != null){
@@ -121,8 +127,11 @@ function createListItem(task){
 
 	// Ajouter les radio box au span
 	rbDiv.appendChild(todoRb);
+    rbDiv.appendChild(todoLab);
 	rbDiv.appendChild(doingRb);
+    rbDiv.appendChild(doingLab);
 	rbDiv.appendChild(doneRb);
+    rbDiv.appendChild(doneLab);
 
 	// Ajouter les éléments à la div
 	listItem.appendChild(taskLabel);
