@@ -37,6 +37,7 @@ let allTasks = [
         state: "done",
     }
 ];
+const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; 
 const form = document.getElementById("formContainer__form");
 const list = document.getElementById("listContainer__list");
 const todobtn = document.getElementById("filter__todo");
@@ -44,7 +45,6 @@ const doingbtn = document.getElementById("filter__doing");
 const donebtn = document.getElementById("filter__done");
 // Date du jour par défaut dans l'input 
 document.getElementById("formContainer__form--date").valueAsDate = new Date();
-
 
 
 // Fonctions
@@ -72,8 +72,12 @@ function createListItem(task){
     let taskDescription = document.createElement("p");
     taskDescription.textContent = task.description;
     let taskDays = document.createElement("p");
-    taskDays.textContent = task.dueDate;
-
+    if(remainingDays(task.dueDate) == -1){
+        taskDays.textContent = "date d'échéance dépassée"
+    }else{
+        taskDays.textContent = remainingDays(task.dueDate) + " jours restants";
+    }
+    
     // Création des radio box
     let rbDiv = document.createElement("div");
     rbDiv.setAttribute("class", "radioBox " + task.id);
@@ -149,14 +153,17 @@ function createListItem(task){
 	return listItem;
 }
 
-const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; 
-
+// Calcule le nombre de jours restants
 function remainingDays(date){
     let remainingDays = 0;
     let todayDate = new Date();
     if(todayDate.getFullYear() === date.getFullYear()){
         if(todayDate.getMonth() === date.getMonth()){
-            remainingDays = date.getDate() - todayDate.getDate();
+            if(date.getDate() < todayDate.getDate()){
+                return -1;
+            }else{
+                remainingDays = date.getDate() - todayDate.getDate();
+            }
         }else{
             let monthsGap = date.getMonth() - todayDate.getMonth();
             if(monthsGap < 0){
@@ -182,22 +189,14 @@ function remainingDays(date){
             if(monthsGap < 0){
                 monthsGap = todayDate.getMonth() - date.getMonth(); // 3
                 for(let i = 1; i <= monthsGap; i++){
-                    remainingDays += months[todayDate.getMonth() - i];
+                    remainingDays -= months[todayDate.getMonth() - i];
                 }
-                if(date.getDate() < todayDate.getDate()){
-                    remainingDays -= (todayDate.getDate() - date.getDate());
-                }else{
-                    remainingDays += (date.getDate() - todayDate.getDate());
-                }
+                remainingDays += (date.getDate() - todayDate.getDate());
             }else{
                 for(let i = 0; i < monthsGap; i++){
                     remainingDays += months[todayDate.getMonth() + i];
                 }
-                if(date.getDate() < todayDate.getDate()){
-                    remainingDays -= (todayDate.getDate() - date.getDate());
-                }else{
-                    remainingDays += (date.getDate() - todayDate.getDate());
-                }
+                remainingDays += (date.getDate() - todayDate.getDate());
             }
         }
     }else{
@@ -209,27 +208,12 @@ function remainingDays(date){
 // 02/02/2025 - 05/05/2023   -> 365+365 - (avril(30)+mars(31)+février(28)) - (5-2) =  638
 // 02/06   -   05/05 = MAI(31) - (5-2) = 28
 // 07/08    -   05/05 = (MAI(31)+JUIN(30)+JUILLET(31) + (7-5)) = 94
+// allTasks.forEach(task => {
+//     console.log(remainingDays(task.dueDate)) // 28 / 334 / -1 / 638 / 17
+// });
+// console.log(allTasks[1].dueDate.getTime() / (1000*60*60*24));
 
-// Si les mois sont égaux -> différence entre les jours
-// Si mois pas égaux -> différence entre les mois (identifier mois) - différence entre les jours
-
-// testDate(allTasks[0].dueDate);
-console.log(allTasks[3].dueDate);
-console.log(new Date());
-nbJours = remainingDays(allTasks[3].dueDate)
-console.log(nbJours); // 94
-console.log(remainingDays(allTasks[0].dueDate)); // 28
-console.log(remainingDays(allTasks[4].dueDate)); // 17
-console.log(remainingDays(allTasks[2].dueDate)) // -1 
-console.log(remainingDays(allTasks[3].dueDate)) // 638
-
-// 31 -> 0, 2, 4, 6, 7, 9, 11
-// 30 -> 3, 5, 8, 10
-// fev -> 1
-// function daysSince1970(date){
-//     console.log((date.getTime() / (1000*60*60*24)));
-// }
-
+// Ajoute la tâche à la liste
 function addTask(task){
     // Empêcher le comportement par défaut du formulaire (recharger la page)
     task.preventDefault();
@@ -266,6 +250,7 @@ function addTask(task){
     displayAllTasks();
 }
 
+// Affiche la liste de toutes les tâches
 function displayAllTasks() {
 	// Vider le contenu du conteneur de liste
 	list.innerHTML = "";
