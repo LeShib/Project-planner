@@ -140,6 +140,7 @@ body main .listContainer .list div {
   background-color: #5DA399;
   border-radius: 10px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: space-around;
+  gap: 5px;
 }/*# sourceMappingURL=style.css.map */
