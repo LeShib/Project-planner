@@ -1,3 +1,115 @@
 @import './vendors/reset';
 @import './utils/mixins';
 
+
+body {
+    background-color: #EEE5E5;
+    font-family: 'Ubuntu', sans-serif;
+
+    header {
+        width: 100%;
+        height: 100%;
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            font-weight: 900;
+            margin: 0 auto;
+            font-size: 30px;
+            line-height: 20px;
+
+            img {
+                height: 40px;
+                width: 40px;
+                margin-top: 10px;
+            }
+        }
+
+        .filterNav {
+            margin-top: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+
+            .todoBtn {
+                background-color: #19647E;
+                height: 30px;
+                width: 100px;
+                border-radius: 5px;
+                font-size: larger;
+                font-family: 'Ubuntu', sans-serif;
+
+            }
+
+            .doingBtn {
+                background-color: #5DA399;
+                height: 30px;
+                width: 100px;
+                border-radius: 5px;
+                font-size: larger;
+                font-family: 'Ubuntu', sans-serif;
+
+            }
+
+            .doneBtn {
+                background-color: #28AFB0;
+                height: 30px;
+                width: 100px;
+                border-radius: 5px;
+                font-size: larger;
+                font-family: 'Ubuntu', sans-serif;
+
+            }
+
+            .daysBtn {
+                background-color: #397367;
+                height: 30px;
+                width: 100px;
+                border-radius: 5px;
+                font-size: larger;
+                font-family: 'Ubuntu', sans-serif;
+            }
+        }
+    }
+
+    main {
+        width: 100%;
+        height: 100%;
+        margin-top: 20px;
+
+        .formContainer {
+            width: 100%;
+            height: 100%;
+        }
+
+        .listContainer {
+            width: 100%;
+            height: 100%;
+
+            .list {
+                width: 100%;
+                height: 100%;
+                margin-top: 15px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                
+            
+                div {
+                    height: 250px;
+                    width: 250px;
+                    background-color: #5DA399;
+                    border-radius: 10px;
+
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    
+                }
+            }
+        }
+    }
+}
