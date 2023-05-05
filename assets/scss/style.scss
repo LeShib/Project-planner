@@ -41,6 +41,7 @@ body {
                 border-radius: 5px;
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
+                border: solid 4px #313E50;
 
             }
 
@@ -51,6 +52,7 @@ body {
                 border-radius: 5px;
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
+                border: solid 4px #313E50;
 
             }
 
@@ -61,6 +63,7 @@ body {
                 border-radius: 5px;
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
+                border: solid 4px #313E50;
 
             }
 
@@ -71,6 +74,7 @@ body {
                 border-radius: 5px;
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
+                border: solid 4px #313E50;
             }
         }
     }
@@ -83,6 +87,16 @@ body {
         .formContainer {
             width: 100%;
             height: 100%;
+
+            .submitBtn {
+                height: 30px;
+                width: 80px;
+                background-color: #73877B;
+                border-radius: 5px;
+                border: solid 4px #313E50;
+                margin: 0 auto;
+
+            }
         }
 
         .listContainer {
@@ -96,20 +110,37 @@ body {
                 display: flex;
                 justify-content: space-around;
                 flex-wrap: wrap;
-                
-            
-                div {
+
+
+                .card {
                     height: 250px;
                     width: 250px;
                     background-color: #5DA399;
                     border-radius: 10px;
+                    column-gap: 60px;
+                    border: solid 4px #313E50;
 
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
-                    gap: 5px;
-                    
+                    margin-bottom: 20px;
 
+                    span {
+                        text-align: center;
+                        margin-top: 5px;
+                        font-weight: 600;
+
+                    }
+
+                    .but {
+                        height: 30px;
+                        width: 80px;
+                        margin: 0 auto;
+                        background-color: #397367;
+                        border-radius: 5px;
+                        border: solid 4px #313E50;
+
+                    }
                 }
             }
         }

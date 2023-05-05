@@ -59,6 +59,7 @@ function getMaxId(){
 function createListItem(task){
     // Création élément liste (div) 
     let listItem = document.createElement("div");
+    listItem.setAttribute("class", "card " + task.id);
     let taskLabel = document.createElement("span");
     taskLabel.textContent = task.label;
     let taskDescription = document.createElement("p");
@@ -68,11 +69,12 @@ function createListItem(task){
 
     // Création des radio box
     let rbDiv = document.createElement("div");
+    rbDiv.setAttribute("class", "radioBox " + task.id);
     let todoRb = document.createElement("input");
     todoRb.type = "radio";
     todoRb.name = "radioState " + task.id;
     let todoLab = document.createElement("label");
-    todoLab.appendChild(document.createTextNode("à faire"));
+    todoLab.appendChild(document.createTextNode("A faire"));
     let doingRb = document.createElement("input");
     doingRb.type = "radio";
     doingRb.name = "radioState " + task.id;
@@ -82,7 +84,7 @@ function createListItem(task){
     doneRb.type = "radio";
     doneRb.name = "radioState " + task.id;
     let doneLab = document.createElement("label");
-    doneLab.appendChild(document.createTextNode("terminée"));
+    doneLab.appendChild(document.createTextNode("Terminée"));
 
     // Valeur par défaut de la radio box
     if(task.state != null){

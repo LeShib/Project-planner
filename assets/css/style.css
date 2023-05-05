@@ -88,6 +88,7 @@ body header .filterNav .todoBtn {
   border-radius: 5px;
   font-size: larger;
   font-family: "Ubuntu", sans-serif;
+  border: solid 4px #313E50;
 }
 body header .filterNav .doingBtn {
   background-color: #5DA399;
@@ -96,6 +97,7 @@ body header .filterNav .doingBtn {
   border-radius: 5px;
   font-size: larger;
   font-family: "Ubuntu", sans-serif;
+  border: solid 4px #313E50;
 }
 body header .filterNav .doneBtn {
   background-color: #28AFB0;
@@ -104,6 +106,7 @@ body header .filterNav .doneBtn {
   border-radius: 5px;
   font-size: larger;
   font-family: "Ubuntu", sans-serif;
+  border: solid 4px #313E50;
 }
 body header .filterNav .daysBtn {
   background-color: #397367;
@@ -112,6 +115,7 @@ body header .filterNav .daysBtn {
   border-radius: 5px;
   font-size: larger;
   font-family: "Ubuntu", sans-serif;
+  border: solid 4px #313E50;
 }
 body main {
   width: 100%;
@@ -121,6 +125,14 @@ body main {
 body main .formContainer {
   width: 100%;
   height: 100%;
+}
+body main .formContainer .submitBtn {
+  height: 30px;
+  width: 80px;
+  background-color: #73877B;
+  border-radius: 5px;
+  border: solid 4px #313E50;
+  margin: 0 auto;
 }
 body main .listContainer {
   width: 100%;
@@ -134,13 +146,29 @@ body main .listContainer .list {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-body main .listContainer .list div {
+body main .listContainer .list .card {
   height: 250px;
   width: 250px;
   background-color: #5DA399;
   border-radius: 10px;
+  -moz-column-gap: 60px;
+       column-gap: 60px;
+  border: solid 4px #313E50;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 5px;
+  margin-bottom: 20px;
+}
+body main .listContainer .list .card span {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: 600;
+}
+body main .listContainer .list .card .but {
+  height: 30px;
+  width: 80px;
+  margin: 0 auto;
+  background-color: #397367;
+  border-radius: 5px;
+  border: solid 4px #313E50;
 }/*# sourceMappingURL=style.css.map */
