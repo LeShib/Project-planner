@@ -37,6 +37,14 @@ const todobtn = document.getElementById("filter__todo");
 document.getElementById("formContainer__form--date").valueAsDate = new Date();
 let id = getMaxId();
 
+function test(task) {
+	// let label = document.getElementById("formContainer__form--task");
+	task.preventDefault();
+	console.log(task.target.label.value);
+	console.log(task.target.description.value);
+	console.log(task.target.date.value);
+	// console.log(label.value);
+}
 
 // Fonctions
 // Récupérer l'id le plus élevé du tableau
@@ -89,43 +97,56 @@ function createListItem(task){
         todoRb.checked = true;
     }
 
-    // Ajout d'évènements aux radio box
-    todoRb.addEventListener("change", function(){
-        task.state = "todo";
-    });
-    doingRb.addEventListener("change", function(){
-        task.state = "doing";
-    });
-    doneRb.addEventListener("change", function(){
-        task.state = "done";
-    });
 
-    // Création du bouton delete
-    let button = document.createElement("button");
-    button.setAttribute("class", "but " + task.id);
-    button.appendChild(document.createTextNode("Supprimer"));
-    button.addEventListener("click", function() {
-        listItem.remove();
-        // Supprimer la tâche du tableau (allTasks)
-        let deletedTaskIndex = allTasks.findIndex(t => t.id === task.id);
-        if (deletedTaskIndex !== -1) {
-            allTasks.splice(deletedTaskIndex, 1);
-        }
-    });
+	// Ajout d'évènements aux radio box
+	todoRb.addEventListener("change", function () {
+		if (!todoRb) {
+			task.state = "todo";
+			todoRb.checked = true;
+		}
+	});
+	
+	doingRb.addEventListener("change", function () {
+		if (!doingRb) {
+			task.state = "doing";
+			doingRb.checked = true;
+		}
+	});
 
-    // Ajouter les radio box au span
-    rbDiv.appendChild(todoRb);
-    rbDiv.appendChild(doingRb);
-    rbDiv.appendChild(doneRb);
+	doneRb.addEventListener("change", function () {
+		if (!doneRb) {
+			task.state = "done";
+			doneRb.checked = true;
+		}
+	});
 
-    // Ajouter les éléments à la div 
-    listItem.appendChild(taskLabel);
-    listItem.appendChild(taskDescription);
-    listItem.appendChild(taskDays);
-    listItem.appendChild(rbDiv);
-    listItem.appendChild(button);
+	// Création du bouton delete
+	let button = document.createElement("button");
+	button.setAttribute("class", "but " + task.id);
+	listContainer__list;
+	button.appendChild(document.createTextNode("Supprimer"));
+	button.addEventListener("click", function () {
+		listItem.remove();
+		// Supprimer la tâche du tableau (allTasks)
+		let deletedTaskIndex = allTasks.findIndex((t) => t.id === task.id);
+		if (deletedTaskIndex !== -1) {
+			allTasks.splice(deletedTaskIndex, 1);
+		}
+	});
 
-    return listItem;
+	// Ajouter les radio box au span
+	rbDiv.appendChild(todoRb);
+	rbDiv.appendChild(doingRb);
+	rbDiv.appendChild(doneRb);
+
+	// Ajouter les éléments à la div
+	listItem.appendChild(taskLabel);
+	listItem.appendChild(taskDescription);
+	listItem.appendChild(taskDays);
+	listItem.appendChild(rbDiv);
+	listItem.appendChild(button);
+
+	return listItem;
 }
 
 function remainingDays(date){
@@ -152,13 +173,15 @@ function addTask(task){
     // Empêcher le comportement par défaut du formulaire (recharger la page)
     task.preventDefault();
 
-    // Empecher un input vide
-    let inputLab = document.getElementById("formContainer__form--task").value;
-    let inputDesc = document.getElementById("formContainer__form--description").value;
-    if(inputLab.trim() === "" || inputDesc.trim() === ""){
-        alert("Veuillez saisir une tâche complète");
-        return;
-    }
+	// Empecher un input vide
+	let inputLab = document.getElementById("formContainer__form--task").value;
+	let inputDesc = document.getElementById(
+		"formContainer__form--description"
+	).value;
+	if (inputLab.trim() === "" || inputDesc.trim() === "") {
+		alert("Veuillez saisir une tâche");
+		return;
+	}
 
     // Création de l'objet task
     let newTask = new Object();
@@ -187,12 +210,12 @@ function addTask(task){
     console.log(dueDate[1]-1); // Month
     console.log(dueDate[2]); // Day
 
-    // Ajouter la nouvelle tache au tableau
-    allTasks.push(newTask);
+	// Ajouter la nouvelle tache au tableau
+	allTasks.push(newTask);
 
-    // ajout du li au ul (html)
-    let listItem = createListItem(newTask);
-    list.appendChild(listItem);
+	// ajout du li au ul (html)
+	let listItem = createListItem(newTask);
+	list.appendChild(listItem);
 
     // Effacer le champ de saisie de texte
     document.getElementById("formContainer__form--task").value = "";
@@ -201,25 +224,32 @@ function addTask(task){
     displayAllTasks();
 }
 
-function displayAllTasks(){
-    // Vider le contenu du conteneur de liste
-    list.innerHTML = "";
-    allTasks.forEach(function(task) {
-        let listItem = createListItem(task);
-        list.appendChild(listItem);
-    });
+function displayAllTasks() {
+	// Vider le contenu du conteneur de liste
+	list.innerHTML = "";
+	allTasks.forEach(function (task) {
+		let listItem = createListItem(task);
+		list.appendChild(listItem);
+	});
 }
 
+// Appels de fonction
+displayAllTasks();
+
+
+// Evenements
+form.addEventListener("submit", addTask);
+
+//Fonction To Do
 // Parcours le tableau
 // récupère tous les éléments qui ont "todo" comme state
 // affiche tous ces éléments
 function todoFilter() {
-    list.innerHTML = "";
-    allTasks.forEach(task => {
-        let divTodo = document.createElement("div");
-        if (task.state == "todo") {
-            divTodo.innerHTML = 
-            `
+	list.innerHTML = "";
+	allTasks.forEach((task) => {
+		let divTodo = document.createElement("div");
+		if (task.state == "todo") {
+			divTodo.innerHTML = `
             <p>${task.label}</p>
             <p>${task.description}</p>
             <p>${task.dueDate}</p>
@@ -229,16 +259,61 @@ function todoFilter() {
                <input type="radio" name ="radiostate ${task.id}">
             </div>
             <button> supprimer </button>
+
             `;
-        }
-        list.appendChild (divTodo);
-    });
+		}
+		list.appendChild(divTodo);
+	});
 }
-
-// Appels de fonction
-displayAllTasks();
-
-
-// Evenements
-form.addEventListener("submit", addTask);
 todobtn.addEventListener("click", todoFilter);
+
+//Fonction Doing
+
+const doingbtn = document.getElementById("filter__doing");
+function doingFilter() {
+	list.innerHTML = "";
+	allTasks.forEach((task) => {
+		let divDoing = document.createElement("div");
+		if (task.state == "doing") {
+			divDoing.innerHTML = `
+        <p>${task.label}</p>
+        <p>${task.description}</p>
+        <p>${task.dueDate}</p>
+        <div>
+           <input type="radio" name = "radiostate ${task.id}" checked>
+           <input type="radio"name = "radiostate ${task.id}">
+           <input type="radio" name ="radiostate ${task.id}">
+        </div>
+        <button> supprimer </button>
+        
+        `;
+		}
+		list.appendChild(divDoing);
+	});
+}
+doingbtn.addEventListener("click", doingFilter);
+
+const donebtn = document.getElementById("filter__done");
+function doneFilter() {
+	list.innerHTML = "";
+	allTasks.forEach((task) => {
+		let divDone = document.createElement("div");
+		if (task.state == "done") {
+			divDone.innerHTML = `
+            <p>${task.label}</p>
+            <p>${task.description}</p>
+            <p>${task.dueDate}</p>
+            <div>
+               <input type="radio" name = "radiostate ${task.id}" checked>
+               <input type="radio"name = "radiostate ${task.id}">
+               <input type="radio" name ="radiostate ${task.id}">
+            </div>
+            <button> supprimer </button>
+
+            `;
+		}
+		list.appendChild(divDone);
+	});
+}
+donebtn.addEventListener("click", doneFilter);
+
