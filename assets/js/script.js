@@ -28,6 +28,13 @@ let allTasks = [
         description: "réaliser techtalk4",
         dueDate: new Date('2023-8-7'),
         state: "done",
+    },
+    {
+        id: 5,
+        label: "travailler5",
+        description: "réaliser techtalk5",
+        dueDate: new Date('2023-5-22'),
+        state: "done",
     }
 ];
 const form = document.getElementById("formContainer__form");
@@ -59,6 +66,7 @@ function getMaxId(){
 function createListItem(task){
     // Création élément liste (div) 
     let listItem = document.createElement("div");
+    listItem.setAttribute("class", "card " + task.id);
     let taskLabel = document.createElement("span");
     taskLabel.textContent = task.label;
     let taskDescription = document.createElement("p");
@@ -68,6 +76,7 @@ function createListItem(task){
 
     // Création des radio box
     let rbDiv = document.createElement("div");
+    rbDiv.setAttribute("class", "radioBox " + task.id);
     let todoRb = document.createElement("input");
     todoRb.type = "radio";
     todoRb.name = "radioState " + task.id;
@@ -144,82 +153,36 @@ function createListItem(task){
 }
 
 const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; 
-// const months = [
-//     {
-//         label: "janvier", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "février", 
-//         nbDays: 28,
-//     },
-//     {
-//         label: "mars", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "avril", 
-//         nbDays: 30,
-//     },
-//     {
-//         label: "mai", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "juin", 
-//         nbDays: 30,
-//     },
-//     {
-//         label: "juillet", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "aout", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "septembre", 
-//         nbDays: 30,
-//     },
-//     {
-//         label: "octobre", 
-//         nbDays: 31,
-//     },
-//     {
-//         label: "novembre", 
-//         nbDays: 30,
-//     },
-//     {
-//         label: "décembre", 
-//         nbDays: 31,
-//     }
-// ];
 
 function remainingDays(date){
-    let remainingDays;
+    let remainingDays = 0;
     let todayDate = new Date();
     if(todayDate.getFullYear() === date.getFullYear()){
         if(todayDate.getMonth() === date.getMonth()){
             remainingDays = date.getDate() - todayDate.getDate();
         }else{
-            let monthsGap = todayDate.getMonth() - date.getMonth();
-            for(let i = 0; i < monthsGap; i++){
-                remainingDays += months[todayDate.getMonth() + i];
-            }
-            if(date.getDate() < todayDate.getDate()){
-                remainingDays -= (todayDate.getDate() - date.getDate());
+            let monthsGap = date.getMonth() - todayDate.getMonth();
+            if(monthsGap < 0){
+                return -1;
             }else{
-                remainingDays += (date.getDate() - todayDate.getDate());
+                for(let i = 0; i < monthsGap; i++){
+                    remainingDays += months[todayDate.getMonth() + i];
+                }
+                if(date.getDate() < todayDate.getDate()){
+                    remainingDays -= (todayDate.getDate() - date.getDate());
+                }else{
+                    remainingDays += (date.getDate() - todayDate.getDate());
+                }
             }
         }
-    }else{
-        
+    }else if(todayDate.getFullYear() < date.getFullYear()){
+        let yearsGap = date.getFullYear() - todayDate.getFullYear();
     }
     return remainingDays;
 }
 
 // 02/06   -   05/05 = MAI(31) - (5-2) = 28
-// 07/08    -   05/05 = (MAI(31)+JUIN(30)+JUILLET(31) + (7-5)) = 89
+// 07/08    -   05/05 = (MAI(31)+JUIN(30)+JUILLET(31) + (7-5)) = 94
 
 // Si les mois sont égaux -> différence entre les jours
 // Si mois pas égaux -> différence entre les mois (identifier mois) - différence entre les jours
@@ -228,15 +191,16 @@ function remainingDays(date){
 console.log(allTasks[3].dueDate);
 console.log(new Date());
 nbJours = remainingDays(allTasks[3].dueDate)
-console.log(nbJours); // 89
+console.log(nbJours); // 94
 console.log(remainingDays(allTasks[0].dueDate)); // 28
+console.log(remainingDays(allTasks[4].dueDate)); // 17
 
-// function daysSince1970(date){
-//     console.log((date.getTime() / (1000*60*60*24)));
-// }
 // 31 -> 0, 2, 4, 6, 7, 9, 11
 // 30 -> 3, 5, 8, 10
 // fev -> 1
+// function daysSince1970(date){
+//     console.log((date.getTime() / (1000*60*60*24)));
+// }
 
 function addTask(task){
     // Empêcher le comportement par défaut du formulaire (recharger la page)
@@ -259,21 +223,6 @@ function addTask(task){
     newTask.description = task.target.description.value;
     newTask.state = "todo";
     newTask.dueDate = task.target.date.value;
-    console.log(task.target.date.value);
-    // todayDate = new Date();
-    // console.log(newTask.date);
-    // // console.log(newTask.date.getFullYear());
-    // // console.log(newTask.date.getMonth());
-    // // console.log(newTask.date.getDay());
-    // console.log(todayDate.getFullYear());
-    // console.log(todayDate.getMonth()+1);
-    // console.log(todayDate.getDay());
-
-    // // let dueDate = newTask.date.split('-');
-    // // console.log('newtask.date',typeof newTask.date)
-    // // console.log(typeof dueDate[0]); // year
-    // // console.log(dueDate[1]); // Month
-    // // console.log(dueDate[2]); // Day
 
 	// Ajouter la nouvelle tache au tableau
 	allTasks.push(newTask);
