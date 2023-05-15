@@ -13,6 +13,7 @@ import { deleteDoneTasks } from "./tasks.js";
 
 // Appels de fonctions
 displayAllTasks();
+// console.log(filter.daysFilter());
 
 
 // Evenements
@@ -20,4 +21,5 @@ variables.form.addEventListener("submit", addTask);
 variables.todobtn.addEventListener("click", filter.todoFilter);
 variables.doingbtn.addEventListener("click", filter.doingFilter);
 variables.donebtn.addEventListener("click", filter.doneFilter);
+variables.daysbtn.addEventListener("click", filter.daysFilter);
 variables.deletebtn.addEventListener("click", deleteDoneTasks);

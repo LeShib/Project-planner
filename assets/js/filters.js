@@ -42,3 +42,17 @@ export function doneFilter() {
 }
 
 // Filtre "jours"
+export function daysFilter(){
+	list.innerHTML = "";
+	allTasks.sort(function(a, b) {
+		const dateA = new Date(a.dueDate);
+		const dateB = new Date(b.dueDate);
+		return dateA - dateB;
+	});
+
+	allTasks.forEach((task) => {
+		let divDays = document.createElement("div");
+		divDays = createListItem(task);
+		list.appendChild(divDays);
+	});
+}
