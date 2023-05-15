@@ -19,7 +19,7 @@ A project planner is responsible for creating a detailed schedule, allocating re
 
 <img src="https://img.shields.io/badge/Collaborators-2-red?style=for-the-badge&logo=appveyor" alt="Badge Collaborators" style="margin-right:10px;">
 
-<!-- Ajout de screen / lien pour visionner le site -->
+https://leshib.github.io/Project-planner/
 
 ---
 
