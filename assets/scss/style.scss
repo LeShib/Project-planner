@@ -19,6 +19,11 @@ body {
             font-size: 30px;
             margin-top: 20px;
 
+           @include for-size (desktop-up) {
+            font-size: 30px;
+           }
+
+
             img {
                 height: 40px;
                 width: 40px;
@@ -33,6 +38,11 @@ body {
             display: flex;
             justify-content: center;
             gap: 10px;
+
+            @include for-size (phone-only) {
+                display: flex;
+                flex-wrap: wrap;
+            }
 
 
             .todoBtn {
@@ -124,6 +134,10 @@ body {
             justify-content: center;
             gap: 10px;
 
+            input {
+                width: 155px;
+
+            }
             .submitBtn {
                 height: 30px;
                 width: 80px;
@@ -166,28 +180,34 @@ body {
                     flex-direction: column;
                     justify-content: space-around;
                     margin-bottom: 20px;
+                    overflow: hidden;
+                    padding: 2px;
+                    word-wrap: break-word;
+                    
+                    
+                    
 
                     span {
                         text-align: center;
                         margin-top: 5px;
                         font-weight: 600;
+                        font-size: 20px;
                     }
 
                     .but {
-                        height: 30px;
-                        width: 80px;
-                        margin: 0 auto;
-                        background-color: #397367;
-                        border-radius: 5px;
-                        border: solid 4px #313E50;
-                        cursor: pointer;
+                        border: none;
+                        background-color: #5DA399;
                     }
-                    .but:hover {
-                        transition-duration: 150ms;
-                        color: #333;
-                        background-color: #5fb1a0;
-        
+
+                    img {
+                        height: 80px;
                     }
+
+                  
+                
+                  
+    
+                    
                 }
             }
         }

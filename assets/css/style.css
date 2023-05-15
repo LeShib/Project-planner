@@ -68,6 +68,11 @@ body header h1 {
   font-size: 30px;
   margin-top: 20px;
 }
+@media (min-width: 1200px) {
+  body header h1 {
+    font-size: 30px;
+  }
+}
 body header h1 img {
   height: 40px;
   width: 40px;
@@ -79,6 +84,12 @@ body header .filterNav {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+@media (max-width: 599px) {
+  body header .filterNav {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 body header .filterNav .todoBtn {
   background-color: #19647E;
@@ -155,6 +166,9 @@ body main .formContainer {
   justify-content: center;
   gap: 10px;
 }
+body main .formContainer input {
+  width: 155px;
+}
 body main .formContainer .submitBtn {
   height: 30px;
   width: 80px;
@@ -191,23 +205,20 @@ body main .listContainer .list .card {
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 20px;
+  overflow: hidden;
+  padding: 2px;
+  word-wrap: break-word;
 }
 body main .listContainer .list .card span {
   text-align: center;
   margin-top: 5px;
   font-weight: 600;
+  font-size: 20px;
 }
 body main .listContainer .list .card .but {
-  height: 30px;
-  width: 80px;
-  margin: 0 auto;
-  background-color: #397367;
-  border-radius: 5px;
-  border: solid 4px #313E50;
-  cursor: pointer;
+  border: none;
+  background-color: #5DA399;
 }
-body main .listContainer .list .card .but:hover {
-  transition-duration: 150ms;
-  color: #333;
-  background-color: #5fb1a0;
+body main .listContainer .list .card img {
+  height: 80px;
 }/*# sourceMappingURL=style.css.map */

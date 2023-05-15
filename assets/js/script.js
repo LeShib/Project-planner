@@ -116,8 +116,8 @@ function createListItem(task){
 	// Création du bouton delete
 	let button = document.createElement("button");
 	button.setAttribute("class", "but " + task.id);
-	listContainer__list;
-	button.appendChild(document.createTextNode("Supprimer"));
+    button.innerHTML = `<img src="./assets/Img/poubelle.svg">`;
+    
 	button.addEventListener("click", function () {
 		listItem.remove();
 		// Supprimer la tâche du tableau (allTasks)
