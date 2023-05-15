@@ -1,6 +1,6 @@
 # Project-planner
 
-A project planner is an individual or a tool that helps in the planning and organization of a project from start to finish. It involves creating a detailed roadmap or schedule that outlines the tasks, resources, timelines, and dependencies required to complete the project successfully.
+A project planner is responsible for creating a detailed schedule, allocating resources, and managing dependencies to ensure project success. They define objectives, create a comprehensive plan, and estimate necessary resources. They organize task sequencing and monitor project progress. They facilitate communication and collaboration among stakeholders, and take actions to keep the project on track. In summary, the project planner ensures rigorous planning and efficient project execution to achieve set goals.
 
 ## 🛠 Technos
 
