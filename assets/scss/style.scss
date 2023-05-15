@@ -1,14 +1,25 @@
 @import './vendors/reset';
 @import './utils/mixins';
 
+html,
+body {
+    background: -webkit-linear-gradient(-8deg, rgb(27, 32, 37), rgb(132, 200, 188));
+    background: linear-gradient(-8deg, rgb(27, 32, 37), rgb(132, 200, 188));
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100vh;
+
+}
 
 body {
-    background-color: #EEE5E5;
-    font-family: 'Ubuntu', sans-serif;
+
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
 
     header {
         width: 100%;
-        height: 100%;
 
         h1 {
 
@@ -16,12 +27,12 @@ body {
             text-align: center;
             font-weight: 900;
             margin: 0 auto;
-            font-size: 30px;
+            font-size: 60px;
             margin-top: 20px;
 
-           @include for-size (desktop-up) {
-            font-size: 30px;
-           }
+            @include for-size (desktop-up) {
+                font-size: 30px;
+            }
 
 
             img {
@@ -34,10 +45,10 @@ body {
         .filterNav {
             margin-top: 20px;
             width: 100%;
-            height: 100%;
             display: flex;
             justify-content: center;
             gap: 10px;
+
 
             @include for-size (phone-only) {
                 display: flex;
@@ -47,16 +58,18 @@ body {
 
             .todoBtn {
                 background-color: #19647E;
-                height: 30px;
+                height: 45px;
                 width: 100px;
                 border-radius: 5px;
                 font-size: larger;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: 'Shadows Into Light', cursive;
                 border: solid 4px #313E50;
                 cursor: pointer;
                 transition: ease-in-out;
 
+
             }
+
             .todoBtn:hover {
                 transition-duration: 150ms;
                 color: #333;
@@ -66,34 +79,36 @@ body {
 
             .doingBtn {
                 background-color: #5DA399;
-                height: 30px;
+                height: 45px;
                 width: 100px;
                 border-radius: 5px;
                 font-size: larger;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: 'Shadows Into Light', cursive;
                 border: solid 4px #313E50;
                 cursor: pointer;
             }
+
             .doingBtn:hover {
                 transition-duration: 150ms;
                 color: #333;
                 background-color: #6accbc;
 
             }
-        
+
 
             .doneBtn {
                 background-color: #28AFB0;
-                height: 30px;
+                height: 45px;
                 width: 100px;
                 border-radius: 5px;
                 font-size: larger;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: 'Shadows Into Light', cursive;
                 border: solid 4px #313E50;
                 cursor: pointer;
                 transition: ease-in-out;
 
             }
+
             .doneBtn:hover {
                 transition-duration: 150ms;
                 color: #333;
@@ -103,19 +118,39 @@ body {
 
             .daysBtn {
                 background-color: #397367;
-                height: 30px;
+                height: 45px;
                 width: 100px;
                 border-radius: 5px;
                 font-size: larger;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: 'Shadows Into Light', cursive;
                 border: solid 4px #313E50;
                 cursor: pointer;
             }
+
             .daysBtn:hover {
                 transition-duration: 150ms;
                 color: #333;
                 background-color: #56a898;
 
+            }
+
+            .deleteBtn {
+                background-color: #276e6e;
+                height: 45px;
+                width: 200px;
+                border-radius: 5px;
+                font-size: larger;
+                font-family: 'Shadows Into Light', cursive;
+                border: solid 4px #313E50;
+                cursor: pointer;
+                transition: ease-in-out;
+
+            }
+
+            .deleteBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #6accbc;
             }
         }
     }
@@ -127,32 +162,34 @@ body {
 
         .formContainer {
             width: 100%;
-            height: 100%;
             margin: 0 auto;
 
             display: flex;
             justify-content: center;
-            gap: 10px;
+
+
 
             input {
                 width: 155px;
+                flex-basis: 50%;
+
 
             }
+
             .submitBtn {
-                height: 30px;
-                width: 80px;
-                background-color: #73877B;
-                border-radius: 5px;
-                border: solid 4px #313E50;
+                background: none;
+                border: none;
                 cursor: pointer;
+                margin-left: 300px;
+                float: right;
+                margin-top: -80px;
             }
-            .submitBtn:hover {
-                transition-duration: 150ms;
-                color: #333;
-                background-color: #56a898;
 
+            img {
+                width: 70px;
+                flex-basis: 50%;
             }
-            
+
         }
 
         .listContainer {
@@ -183,9 +220,9 @@ body {
                     overflow: hidden;
                     padding: 2px;
                     word-wrap: break-word;
-                    
-                    
-                    
+
+
+
 
                     span {
                         text-align: center;
@@ -197,17 +234,14 @@ body {
                     .but {
                         border: none;
                         background-color: #5DA399;
+                        cursor: pointer;
                     }
 
                     img {
                         height: 80px;
                     }
 
-                  
-                
-                  
-    
-                    
+
                 }
             }
         }

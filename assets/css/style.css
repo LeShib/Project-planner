@@ -52,20 +52,29 @@ table {
   border-spacing: 0;
 }
 
+html,
 body {
-  background-color: #EEE5E5;
-  font-family: "Ubuntu", sans-serif;
+  background: linear-gradient(-8deg, rgb(27, 32, 37), rgb(132, 200, 188));
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+}
+
+body {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 body header {
   width: 100%;
-  height: 100%;
 }
 body header h1 {
   width: 100%;
   text-align: center;
   font-weight: 900;
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 60px;
   margin-top: 20px;
 }
 @media (min-width: 1200px) {
@@ -80,7 +89,6 @@ body header h1 img {
 body header .filterNav {
   margin-top: 20px;
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -93,11 +101,11 @@ body header .filterNav {
 }
 body header .filterNav .todoBtn {
   background-color: #19647E;
-  height: 30px;
+  height: 45px;
   width: 100px;
   border-radius: 5px;
   font-size: larger;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Shadows Into Light", cursive;
   border: solid 4px #313E50;
   cursor: pointer;
   transition: ease-in-out;
@@ -109,11 +117,11 @@ body header .filterNav .todoBtn:hover {
 }
 body header .filterNav .doingBtn {
   background-color: #5DA399;
-  height: 30px;
+  height: 45px;
   width: 100px;
   border-radius: 5px;
   font-size: larger;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Shadows Into Light", cursive;
   border: solid 4px #313E50;
   cursor: pointer;
 }
@@ -124,11 +132,11 @@ body header .filterNav .doingBtn:hover {
 }
 body header .filterNav .doneBtn {
   background-color: #28AFB0;
-  height: 30px;
+  height: 45px;
   width: 100px;
   border-radius: 5px;
   font-size: larger;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Shadows Into Light", cursive;
   border: solid 4px #313E50;
   cursor: pointer;
   transition: ease-in-out;
@@ -140,11 +148,11 @@ body header .filterNav .doneBtn:hover {
 }
 body header .filterNav .daysBtn {
   background-color: #397367;
-  height: 30px;
+  height: 45px;
   width: 100px;
   border-radius: 5px;
   font-size: larger;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Shadows Into Light", cursive;
   border: solid 4px #313E50;
   cursor: pointer;
 }
@@ -153,6 +161,22 @@ body header .filterNav .daysBtn:hover {
   color: #333;
   background-color: #56a898;
 }
+body header .filterNav .deleteBtn {
+  background-color: #276e6e;
+  height: 45px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: larger;
+  font-family: "Shadows Into Light", cursive;
+  border: solid 4px #313E50;
+  cursor: pointer;
+  transition: ease-in-out;
+}
+body header .filterNav .deleteBtn:hover {
+  transition-duration: 150ms;
+  color: #333;
+  background-color: #6accbc;
+}
 body main {
   width: 100%;
   height: 100%;
@@ -160,27 +184,25 @@ body main {
 }
 body main .formContainer {
   width: 100%;
-  height: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 10px;
 }
 body main .formContainer input {
   width: 155px;
+  flex-basis: 50%;
 }
 body main .formContainer .submitBtn {
-  height: 30px;
-  width: 80px;
-  background-color: #73877B;
-  border-radius: 5px;
-  border: solid 4px #313E50;
+  background: none;
+  border: none;
   cursor: pointer;
+  margin-left: 300px;
+  float: right;
+  margin-top: -80px;
 }
-body main .formContainer .submitBtn:hover {
-  transition-duration: 150ms;
-  color: #333;
-  background-color: #56a898;
+body main .formContainer img {
+  width: 70px;
+  flex-basis: 50%;
 }
 body main .listContainer {
   width: 100%;
@@ -218,6 +240,7 @@ body main .listContainer .list .card span {
 body main .listContainer .list .card .but {
   border: none;
   background-color: #5DA399;
+  cursor: pointer;
 }
 body main .listContainer .list .card img {
   height: 80px;

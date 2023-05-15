@@ -66,11 +66,11 @@ export function createListItem(task){
     taskDescription.textContent = task.description;
     let taskDays = document.createElement("p");
     if(remainingDays(task.dueDate) == -1){
-        taskDays.textContent = "date d'échéance dépassée"
+        taskDays.textContent = "Due date passed"
     }else if(remainingDays(task.dueDate) <= 1 && remainingDays(task.dueDate) >= 0){
-        taskDays.textContent = remainingDays(task.dueDate) + " jour restant";
+        taskDays.textContent = remainingDays(task.dueDate) + " Day left";
     }else{
-        taskDays.textContent = remainingDays(task.dueDate) + " jours restants";
+        taskDays.textContent = remainingDays(task.dueDate) + " Days left";
     }
     
     // Création des radio box
@@ -80,17 +80,17 @@ export function createListItem(task){
     todoRb.type = "radio";
     todoRb.name = "radioState " + task.id;
     let todoLab = document.createElement("label");
-    todoLab.appendChild(document.createTextNode("à faire"));
+    todoLab.appendChild(document.createTextNode("To Do"));
     let doingRb = document.createElement("input");
     doingRb.type = "radio";
     doingRb.name = "radioState " + task.id;
     let doingLab = document.createElement("label");
-    doingLab.appendChild(document.createTextNode("en cours"));
+    doingLab.appendChild(document.createTextNode("Doing"));
     let doneRb = document.createElement("input");
     doneRb.type = "radio";
     doneRb.name = "radioState " + task.id;
     let doneLab = document.createElement("label");
-    doneLab.appendChild(document.createTextNode("terminée"));
+    doneLab.appendChild(document.createTextNode("Ended"));
 
     // Valeur par défaut de la radio box
     if(task.state != null){

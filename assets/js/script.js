@@ -13,7 +13,6 @@ import { deleteDoneTasks } from "./tasks.js";
 
 // Appels de fonctions
 displayAllTasks();
-// console.log(filter.daysFilter());
 
 
 // Evenements
