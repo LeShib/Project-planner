@@ -11,19 +11,20 @@ body {
         height: 100%;
 
         h1 {
+
             width: 100%;
             text-align: center;
             font-weight: 900;
             margin: 0 auto;
             font-size: 30px;
-            line-height: 20px;
+            margin-top: 20px;
 
             img {
                 height: 40px;
                 width: 40px;
-                margin-top: 10px;
             }
         }
+
 
         .filterNav {
             margin-top: 20px;
@@ -42,6 +43,14 @@ body {
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
                 border: solid 4px #313E50;
+                cursor: pointer;
+                transition: ease-in-out;
+
+            }
+            .todoBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #519db6;
 
             }
 
@@ -53,8 +62,15 @@ body {
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
                 border: solid 4px #313E50;
+                cursor: pointer;
+            }
+            .doingBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #6accbc;
 
             }
+        
 
             .doneBtn {
                 background-color: #28AFB0;
@@ -64,6 +80,14 @@ body {
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
                 border: solid 4px #313E50;
+                cursor: pointer;
+                transition: ease-in-out;
+
+            }
+            .doneBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #6accbc;
 
             }
 
@@ -75,6 +99,13 @@ body {
                 font-size: larger;
                 font-family: 'Ubuntu', sans-serif;
                 border: solid 4px #313E50;
+                cursor: pointer;
+            }
+            .daysBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #56a898;
+
             }
         }
     }
@@ -87,6 +118,11 @@ body {
         .formContainer {
             width: 100%;
             height: 100%;
+            margin: 0 auto;
+
+            display: flex;
+            justify-content: center;
+            gap: 10px;
 
             .submitBtn {
                 height: 30px;
@@ -94,9 +130,15 @@ body {
                 background-color: #73877B;
                 border-radius: 5px;
                 border: solid 4px #313E50;
-                margin: 0 auto;
+                cursor: pointer;
+            }
+            .submitBtn:hover {
+                transition-duration: 150ms;
+                color: #333;
+                background-color: #56a898;
 
             }
+            
         }
 
         .listContainer {
@@ -109,6 +151,7 @@ body {
                 margin-top: 15px;
                 display: flex;
                 justify-content: space-around;
+                gap: 20px;
                 flex-wrap: wrap;
 
 
@@ -117,7 +160,6 @@ body {
                     width: 250px;
                     background-color: #5DA399;
                     border-radius: 10px;
-                    column-gap: 60px;
                     border: solid 4px #313E50;
 
                     display: flex;
@@ -129,7 +171,6 @@ body {
                         text-align: center;
                         margin-top: 5px;
                         font-weight: 600;
-
                     }
 
                     .but {
@@ -139,7 +180,13 @@ body {
                         background-color: #397367;
                         border-radius: 5px;
                         border: solid 4px #313E50;
-
+                        cursor: pointer;
+                    }
+                    .but:hover {
+                        transition-duration: 150ms;
+                        color: #333;
+                        background-color: #5fb1a0;
+        
                     }
                 }
             }
